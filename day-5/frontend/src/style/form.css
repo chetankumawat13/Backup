@@ -1,0 +1,48 @@
+
+.form{
+    width: 40%;
+    padding: 5rem;
+    border-radius: 10px;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form h1{
+    text-align: center;
+    font-size: 2.5rem;
+    color: black;
+
+  }
+  
+  .form input,
+  .form textarea{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid black;
+  }
+  
+  .form textarea{
+    height: 120px;
+    resize: none;
+  }
+  
+  .form button{
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+  
+    background-color: royalblue;
+    color: white;
+    cursor: pointer;
+  }
+
+.form input:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}

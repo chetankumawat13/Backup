@@ -1,0 +1,56 @@
+.card{
+    width: 300px;
+    background-color: tomato;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid black;
+    padding: 1rem;
+
+    img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    h1{
+        font-size: 3rem;
+        color: black;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+    p{
+        font-size: 1.5rem;
+        color: rgb(19, 19, 19);
+        font-weight: 300;
+    }
+    .buttons{
+        display: flex;
+        justify-content: space-between ;
+        width: 100%;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+         
+
+        .dlt{
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: crimson;
+            color: white;
+            cursor: pointer;
+        }
+        .edt{
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: royalblue;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
