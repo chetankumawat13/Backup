@@ -80,16 +80,36 @@ authRouter.post('/login', async (req,res) => {
         process.env.JWT_SECRET
     )
 
-    res.cookie('jwt-token',token)
+    res.cookie('token',token)
 
     res.status(200).json({
         message:"user logged In",
         user,
-        
+
     })
 
 
 }) 
+
+
+/**
+* /api/auth/get-me
+*/
+
+authRouter.get('/get-me', async(req,res) => {
+    const token = req.cookies.token
+
+   const decoded = jwt.verify(token,process.env.JWT_SECRET)
+
+   const user = await userModel.findById(decoded.id)
+
+   res.status(200).json({
+    message:"data fetched successfully",
+    user
+   })
+
+})
+
 
 module.exports = authRouter
 
