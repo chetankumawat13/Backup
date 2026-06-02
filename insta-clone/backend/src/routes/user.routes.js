@@ -1,6 +1,6 @@
 const express = require('express')
 const identifyUser = require('../middlewares/auth.middleware')
-const { followUserController, unfollowUserController } = require('../controller/user.controller')
+const { followUserController, unfollowUserController, acceptRequestController } = require('../controller/user.controller')
 
 const userRouter = express.Router()
 
@@ -24,5 +24,16 @@ userRouter.post('/follow/:username',identifyUser,followUserController)
 
 
 userRouter.post('/unfollow/:username',identifyUser,unfollowUserController)
+
+
+
+/**
+ * @route /api/users/request/:requestId/accept
+ * @description accept user follow request
+ * @access private
+ */
+
+
+userRouter.patch('/request/:requestId/accept',identifyUser,acceptRequestController)
 
 module.exports = userRouter

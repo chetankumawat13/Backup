@@ -37,14 +37,19 @@ async function followUserController(req,res){
         })
     }
 
+     const status = isFolloweeExists.accountType === "private" ? "pending" : "accepted"
+
     const followRecord = await followModel.create({
         follower:followerUsername,
-        followee:followeeUsername
+        followee:followeeUsername,
+        status
     })
 
+   
+
     res.status(201).json({
-        message:`you are following ${followeeUsername}`,
-        follow:followRecord
+        message: status == "pending" ? "follow request sent" : `you are following ${followeeUsername}`,
+        follow:followRecord,
     })
 
 }
@@ -71,11 +76,47 @@ async function unfollowUserController(req,res){
     })
 }
 
+async function acceptRequestController(req,res){
+   try{
+    const requestId = req.params.requestId
+    console.log(requestId);
+    const username = req.user.username
+
+    const request = await followModel.findById(requestId)
+
+    if(!request){
+        return res.status(404).json({
+            message:"request not found"
+        })
+    }
+
+    if(request.follower !== username){
+        return res.status(403).json({
+            message:"forbidden"
+        })
+    }
+    request.status = "accepted"
+
+    await request.save()
+
+    res.status(200).json({
+        message:"request accepted successfully",
+        request
+    })
+   }catch(err){
+     return res.status(404).json({
+        message:'invalid request id'
+     })
+   }
+
+}
+
 
 
 
 module.exports = {
     followUserController,
-    unfollowUserController
+    unfollowUserController,
+    acceptRequestController
 
 }

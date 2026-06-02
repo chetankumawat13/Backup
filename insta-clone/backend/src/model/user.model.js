@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
     profileImage:{
         type:String,
         default:"https://ik.imagekit.io/ad6av31ld/blank-profile-picture-973460_640.webp?updatedAt=1770787184788"
+    },
+    accountType:{
+        type:String,
+        enum:['public','private'],
+        default:"public"
     }
 })
 

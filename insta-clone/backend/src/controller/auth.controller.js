@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 
 async function registerController(req,res){
-    const {username,email,bio,profileImage,password} = req.body
+    const {username,email,bio,profileImage,password,accountType} = req.body
 
     const isUserAlreadyExit = await userModel.findOne({
         $or:[
@@ -26,7 +26,8 @@ async function registerController(req,res){
         email,
         bio,
         profileImage,
-        password:hash
+        password:hash,
+        accountType
     })
 
     const token = jwt.sign(
@@ -47,7 +48,8 @@ async function registerController(req,res){
             username: user.username,
             email:user.email,
             bio:user.bio,
-            profileImage:user.profileImage
+            profileImage:user.profileImage,
+            accountType
         }
     })
 
@@ -97,7 +99,8 @@ async function loginController(req,res){
             user:user.username,
             email:user.email,
             profileImage:user.profileImage,
-            bio:user.bio
+            bio:user.bio,
+            accountType:user.accountType
 
         }
     })
