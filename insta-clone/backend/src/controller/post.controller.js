@@ -12,23 +12,7 @@ const client = new ImageKit({
 
 async function createPostController(req,res){
 
-    const token = req.cookies.token
-
-    if(!token){
-        return res.status(401).json({
-            message:"Token not provided, unauthorized user"
-        })
-    }
-
-    let decoded = null
-
-    try{
-        decoded = jwt.verify(token,process.env.JWT_SECRET)
-    }catch(err){
-        return res.status(401).json({
-            message:"unauthorized user "
-        })
-    }
+   const userId = req.user.id
 
     const uploadFile = await client.files.upload({
         file: await toFile(Buffer.from(req.file.buffer),'file'),
@@ -39,7 +23,7 @@ async function createPostController(req,res){
     const post = await postModel.create({
         caption:req.body.caption,
         imgUrl:uploadFile.url,
-        user:decoded.id
+        user:userId
     })
 
     res.status(201).json({
@@ -53,26 +37,11 @@ async function createPostController(req,res){
 }
 
 async function getPostController(req,res){
-    const token = req.cookies.token
-
-    if(!token){
-        return res.status(401).json({
-            messageL:"unauthorized user, toke not found"
-        })
-    }
-
-    let decoded = null
-
-    try{
-        decoded = jwt.verify(token,process.env.JWT_SECRET)
-    }catch(err){
-       return res.status(401).json({
-            message:'unauthorized token'
-        })
-    }
+    
+    const userId = req.user.id
 
     const post = await postModel.find({
-        user:decoded.id
+        user:userId
     })
 
     res.status(200).json({
@@ -84,25 +53,9 @@ async function getPostController(req,res){
 
 
 async function getPostDetailsController(req,res){
-    const token = req.cookies.token
+    
 
-    if(!token){
-       return res.status(401).json({
-            message:"unauthorized access token not fund"
-        })
-    }
-
-    let decoded = null
-
-    try{
-        decoded = jwt.verify(token,process.env.JWT_SECRET)
-    }catch(err){
-        return res.status(401).json({
-            message:"unauthorized access"
-        })
-    }
-
-    const userId = decoded.id
+    const userId = req.user.id
     const postId = req.params.postId
 
     const post = await postModel.findById(postId)
