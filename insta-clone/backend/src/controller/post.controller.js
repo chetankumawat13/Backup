@@ -88,6 +88,17 @@ async function likePostController(req,res){
 
     const post = await postModel.findById(postId)
 
+    const ifUserAlreadyLiked = await likeModel.findOne({
+        post:postId,
+        user:userName
+    })
+
+    if(ifUserAlreadyLiked){
+        return res.status(200).json({
+            message:"you already liked this post"
+        })
+    }
+
     if(!post){
         return res.status(404).json({
             message:'post not found'
