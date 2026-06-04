@@ -8,6 +8,13 @@ const AuthLayout = () => {
             <img src="https://ik.imagekit.io/ad6av31ld/instagram-clone/insta.png" alt="" />
       </div>
       <Outlet />
+
+      <div className="bottom-bar">
+        <div className="meta-logo">
+          <img src="https://ik.imagekit.io/ad6av31ld/instagram-clone/meta.png" alt="" />
+        </div>
+      </div>
+
     </div>
   )
 }

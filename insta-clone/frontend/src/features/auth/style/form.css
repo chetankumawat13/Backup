@@ -1,5 +1,5 @@
 .form-container{
-    min-height: 75vh;
+    min-height: 65vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -25,6 +25,12 @@
                     outline: none;
                     border: 1px solid blue;
                 }
+        }
+
+        a{
+            color: blue;
+            font-size: 0.9rem;
+            text-decoration: none;
         }
     }
     
