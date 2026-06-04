@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body,
+#root{
+    width: 100%;
+}
+
+.layout{
+    width: 100%;
+    padding: 2rem;
+
+
+    .instagram-logo{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: aqua;
+
+        img{
+            width: 70px;
+        }
+    }
+}
