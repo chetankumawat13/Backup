@@ -16,19 +16,19 @@
         gap: 1rem;
 
         input{
-            padding: 0.5rem;
+            padding: 0.7rem 0.5rem;
             border: 1px solid black;
             border-radius: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.2rem;
             background-color: transparent;
                 &:focus{
                     outline: none;
-                    border: 1px solid blue;
+                    border: 1px solid #0095F6;
                 }
         }
 
         a{
-            color: blue;
+            color:  #0095F6;
             font-size: 0.9rem;
             text-decoration: none;
         }
