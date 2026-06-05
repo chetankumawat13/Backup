@@ -9,14 +9,18 @@ export const useAuth = () => {
 
     const {user,setUser,loading, setLoading} = context
 
-    const handleLogin = async (username,password) => {
-        setLoading(true)
+    const handleLogin = async (identifier,password) => {
+        try{
+            setLoading(true)
 
-        const response = await login(username,password)
+            const response = await login(identifier,password)
 
-        setUser(response)
+            setUser(response)
+        }finally{
+            setLoading(false)
+        }
 
-        setLoading(false)
+      
 
     }
 
