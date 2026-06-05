@@ -49,10 +49,6 @@ body,
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
-
-    &.primary-button{
-        background-color:  #0095F6;
-    }
 }
 
 .spinner{
@@ -79,4 +75,51 @@ body,
     color:red;
     font-size:1.2rem;
     margin-bottom:10px;
+}
+
+.account-type-btn{
+    flex:1;
+    padding:1rem;
+    border:1px solid #dbdbdb;
+    border-radius:12px;
+    background:white;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.account-type-btn:hover{
+    background-color:#f5f5f5;
+}
+
+.account-type-btn.active{
+    background-color:#0095f6;
+    color:white;
+    border-color:#0095f6;
+}
+
+
+.step-actions{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+
+    .back-btn{
+        flex:1;
+    }
+    .primary-button{
+        flex:1;
+    }
+}
+
+.primary-button{
+    background-color:  #0095F6;
+}
+
+.back-btn{
+    background-color: transparent;
+    border:1px solid #dbdbdb;
+    color: black;
 }

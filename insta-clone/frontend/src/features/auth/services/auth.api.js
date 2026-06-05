@@ -14,10 +14,15 @@ export async function login(identifier,password){
     return response.data
 }
 
-export async function register(username,email,password){
+export async function register(username,email,password,accountType,bio){
     const response = await api.post('/register',{
-        username,email,password
+        username,email,password,accountType,bio
     })
 
+    return response.data
+}
+
+export async function getMe(){
+    const response = await api.get('/get-me')
     return response.data
 }
