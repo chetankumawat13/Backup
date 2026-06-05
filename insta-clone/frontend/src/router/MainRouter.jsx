@@ -2,6 +2,8 @@ import {createBrowserRouter} from 'react-router'
 import Login from '../features/auth/pages/Login'
 import AuthLayout from '../layout/AuthLayout'
 import Register from '../features/auth/pages/Register'
+import ProtectedRoute from './ProtectedRoute'
+import Home from '../features/posts/pages/Home'
 
 
 export const MainRoute = createBrowserRouter([
@@ -18,5 +20,14 @@ export const MainRoute = createBrowserRouter([
             }
         ]
     },
+    {
+        element:<ProtectedRoute />,
+        children:[
+            {
+                path:'/',
+                element:<Home />
+            }
+        ]
+    }
 
 ])
