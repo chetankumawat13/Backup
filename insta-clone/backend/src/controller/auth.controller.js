@@ -15,7 +15,7 @@ async function registerController(req,res){
 
     if(isUserAlreadyExit){
         return res.status(409).json({
-            message:'user already exist' + (isUserAlreadyExit.email == email ? 'with this email' : 'with this username')
+            message:'user already exist' + (isUserAlreadyExit.email == email ? '  with this email' : '  with this username')
         })
     }
 
