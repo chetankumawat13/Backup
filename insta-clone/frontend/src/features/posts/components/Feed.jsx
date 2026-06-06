@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../style/feed.css'
+import { usePost } from '../hooks/usePost'
 
 const Feed = () => {
+
+    const {data,loading,fetchHomeFeed} = usePost();
+
+    useEffect(() => {
+        fetchHomeFeed();
+     }, []);
+
+     const posts = data?.post || [];
+     console.log(posts);
+
   return (
     <div className='feed-container'>
         <div className="posts">
