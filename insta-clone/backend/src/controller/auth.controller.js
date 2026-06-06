@@ -140,13 +140,21 @@ async function getHomeFeedController(req,res){
 
     const followingUsernames = following.map(f => f.followee)
 
-    const posts = await postModel.find().populate('user').sort({_id:-1})
+    const users = await userModel.find({
+        username:{$in: followingUsernames}
+    }).select("_id")
 
-    const feedPosts = posts.filter(post => followingUsernames.includes(post.user.username))
+    const userIds = users.map(user => user._id);
+
+
+    const posts = await postModel.find({
+        user:{$in:userIds}
+    }).populate('user').sort({_id:-1})
+
 
     res.status(200).json({
         message:'home feed dataFetched successfully',
-        post:feedPosts
+        post:posts
     })
 
 
