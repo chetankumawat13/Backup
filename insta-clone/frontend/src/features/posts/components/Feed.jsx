@@ -37,7 +37,12 @@ const Feed = () => {
                         <i className="ri-bookmark-line"></i>
                     </div>
                 </div>
+                <p className="post-caption">
+                <span className="user">chetan</span>{" "}
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                </p>
             </div>
+            
         </div>
     </div>
   )

@@ -14,7 +14,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 3rem;
         overflow-y: auto;
         padding: 1rem 0.5rem;
         &::-webkit-scrollbar {
@@ -132,6 +132,14 @@
                         cursor: pointer;
                     }
                 }
+            }
+            .post-caption{
+                margin: 0;
+                font-size: 1rem;
+            }
+            
+            .user{
+                font-weight: 600;
             }
         }
 
