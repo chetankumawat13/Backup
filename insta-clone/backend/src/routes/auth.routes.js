@@ -22,7 +22,7 @@ authRouter.post('/login',loginController)
 authRouter.get('/get-me',identifyUser,getMeController)
 
 
-authRouter.get('/home',identifyUser,getHomeFeedController)
+
 
 
 
