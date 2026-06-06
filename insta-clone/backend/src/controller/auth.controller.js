@@ -161,7 +161,99 @@ async function getHomeFeedController(req,res){
 
 }
 
+async function getProfileController(req,res){
+    const LoggedInUser = req.user.username
+    const profileUserName = req.params.username
 
+
+    const user = await userModel.findOne({
+        username:profileUserName
+    }).select('-password')
+
+    if(!user){
+        return res.status(404).json*({
+            message:'user not found',
+
+        })
+    }
+
+    const isOwnProfile = LoggedInUser === profileUserName
+
+    const isFollowing = await followModel.findOne({
+        follower:LoggedInUser,
+        followee:profileUserName,
+        status:'accepted'
+    })
+
+    const canViewPosts = user.accountType === 'public' || isOwnProfile || isFollowing
+
+    const followersCount = await followModel.countDocuments({
+        followee:profileUserName,
+        status:'accepted'
+    })
+
+    const followingCount = await followModel.countDocuments({
+        follower:profileUserName,
+        status:'accepted'
+    })
+
+    const postCount = await postModel.countDocuments({
+        user:user._id
+    })
+
+    const followRecord = await followModel.findOne({
+        follower: LoggedInUser,
+        followee: profileUserName
+    });
+
+    let relationshipStatus = "none";
+
+if (isOwnProfile) {
+    relationshipStatus = "self";
+} else if (followRecord) {
+    relationshipStatus = followRecord.status;
+}
+
+
+
+    if(!canViewPosts){
+        return res.status(200).json({
+            message:'user account is private',
+            user:{
+                username:user.username,
+                bio:user.bio,
+                profileImage:user.profileImage,
+                accountType:user.accountType,
+                followersCount,
+                followingCount,
+                postCount
+            },
+            posts : [],
+            private:true
+        })
+    }
+
+    const posts = await postModel.find({
+        user:user._id
+    }).populate('user').sort({_id:-1})
+
+    res.status(200).json({
+        message:'profile fetched successfully',
+        user:{
+            username:user.username,
+            bio:user.bio,
+            profileImage:user.profileImage,
+            accountType:user.accountType,
+            followersCount,
+            followingCount,
+            postCount
+        },
+        posts,
+        private:false,
+        relationshipStatus
+    })
+
+}
 
 
 
@@ -171,5 +263,6 @@ module.exports = {
     registerController,
     loginController,
     getMeController,
-    getHomeFeedController
+    getHomeFeedController,
+    getProfileController
 }
