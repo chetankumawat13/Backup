@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const userModel = require('../model/user.model')
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
+const followModel = require('../model/follow.model')
+const postModel = require('../model/post.model')
 
 async function registerController(req,res){
     const {username,email,bio,profileImage,password,accountType} = req.body
@@ -128,6 +130,29 @@ async function getMeController(req,res){
 
 }
 
+async function getHomeFeedController(req,res){
+    const userName = req.user.username;
+
+    const following = await followModel.find({
+        follower:userName,
+        status:"accepted"
+    })
+
+    const followingUsernames = following.map(f => f.followee)
+
+    const posts = await postModel.find().populate('user').sort({_id:-1})
+
+    const feedPosts = posts.filter(post => followingUsernames.includes(post.user.username))
+
+    res.status(200).json({
+        message:'home feed dataFetched successfully',
+        post:feedPosts
+    })
+
+
+
+}
+
 
 
 
@@ -137,5 +162,6 @@ async function getMeController(req,res){
 module.exports = {
     registerController,
     loginController,
-    getMeController
+    getMeController,
+    getHomeFeedController
 }

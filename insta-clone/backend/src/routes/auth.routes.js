@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerController, loginController, getMeController } = require('../controller/auth.controller');
+const { registerController, loginController, getMeController,getHomeFeedController } = require('../controller/auth.controller');
 const identifyUser = require('../middlewares/auth.middleware');
 
 const authRouter = express.Router();
@@ -20,6 +20,9 @@ authRouter.post('/login',loginController)
 
 
 authRouter.get('/get-me',identifyUser,getMeController)
+
+
+authRouter.get('/home',identifyUser,getHomeFeedController)
 
 
 

@@ -90,7 +90,7 @@ async function acceptRequestController(req,res){
         })
     }
 
-    if(request.follower !== username){
+    if(request.followee !== username){
         return res.status(403).json({
             message:"forbidden"
         })
