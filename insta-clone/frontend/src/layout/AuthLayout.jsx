@@ -9,7 +9,7 @@ const AuthLayout = () => {
       </div>
       <Outlet />
 
-      <div className="bottom-bar">
+      <div className="btm-bar">
         <div className="meta-logo">
           <img src="https://ik.imagekit.io/ad6av31ld/instagram-clone/meta.png" alt="" />
         </div>

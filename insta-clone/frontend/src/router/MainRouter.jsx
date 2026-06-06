@@ -4,6 +4,7 @@ import AuthLayout from '../layout/AuthLayout'
 import Register from '../features/auth/pages/Register'
 import ProtectedRoute from './ProtectedRoute'
 import Home from '../features/posts/pages/Home'
+import FeedLayout from '../layout/FeedLayout'
 
 
 export const MainRoute = createBrowserRouter([
@@ -24,8 +25,13 @@ export const MainRoute = createBrowserRouter([
         element:<ProtectedRoute />,
         children:[
             {
-                path:'/',
-                element:<Home />
+                element:<FeedLayout />,
+                children:[
+                    {
+                        path:'/',
+                        element:<Home />
+                    }
+                ]
             }
         ]
     }
