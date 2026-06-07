@@ -14,3 +14,10 @@ export async function homeFeed(){
 
     return response.data
 }
+
+export async function profileData(username){
+    const response = await api.get(`/profile/${username}`)
+    console.log(response);
+    return response.data
+}
+

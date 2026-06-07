@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { PostContext } from "../post.context"
-import { homeFeed } from "../services/post.api"
+import { homeFeed, profileData } from "../services/post.api"
 
 
 export const usePost = () => {
@@ -18,9 +18,19 @@ export const usePost = () => {
         }
     }
 
+    const fetchProfileData = async (username) => {
+        try{
+            setLoading(true)
+            const response = await profileData(username)
+            setData(response)
+        }finally{
+            setLoading(false)
+        }
+    }
+
 
     return {
-        data,loading,fetchHomeFeed
+        data,loading,fetchHomeFeed,fetchProfileData
     }
 
 }
