@@ -103,7 +103,6 @@ async function getMeController(req,res){
 
     const user = await userModel.findById(userId)
 
-    console.log(user);
 
     res.status(200).json({
         message:"user data fetched successfully",
