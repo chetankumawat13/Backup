@@ -46,7 +46,73 @@ async function registerController(req,res){
 
 }
 
+async function loginController(req,res){
+    const {email,username,password} = req.body
+
+    const user = await userModel.findOne({
+        $or:[
+            {
+                email
+            },
+            {
+                username
+            }
+        ]
+    }).select('+password')
+
+    if(!user){
+        return res.status(400).json({
+            message:"invalid credential"
+        })
+    }
+
+    const isMatch = await bcrypt.compare(password,user.password)
+
+    if(!isMatch){
+        return res.status(400).json({
+            message:"invalid credential"
+        })
+    }
+
+    const token = jwt.sign(
+        {
+            id:user._id,
+            username:user.username
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn:'1d'
+        }
+    )
+
+    res.cookie('token',token)
+
+    res.status(200).json({
+        message:"user login successfully",
+        user
+    })
+
+
+
+}
+
+async function getMeController(req,res){
+    const userId = req.user.id
+
+
+
+    const user = await userModel.findById(userId)
+
+    console.log(user);
+
+    res.status(200).json({
+        message:"user data fetched successfully",
+        user
+    })
+
+}
+
 
 module.exports = {
-    registerController
+    registerController,loginController,getMeController
 }
