@@ -112,19 +112,48 @@ async function getMeController(req,res){
 
 }
 
-async function logoutUser(req,res){
-    const token = req.cookies.token
+async function logoutUser(req, res) {
+    try {
 
-    res.clearCookie("token")
+        const token = req.cookies.token;
 
-    await redis.set(token,Date.now().toString(),'EX',60*60)
+        if (!token) {
+            return res.status(400).json({
+                message: "Token not found"
+            });
+        }
 
-    res.status(200).json({
-        message:'logout successfully'
-    })
+        res.clearCookie("token");
 
+        await redis.set(
+            token,
+            Date.now().toString()
+        );
+
+        const value = await redis.get(token);
+
+        console.log("Value:", value);
+
+        const keys = await redis.keys("*");
+        console.log("Keys:", keys);
+
+        console.log("Ping:", await redis.ping());
+        console.log("DB Size:", await redis.dbsize());
+
+        return res.status(200).json({
+            message: "logout successfully"
+        });
+
+    } catch (err) {
+
+        console.error("Logout Error:", err);
+
+        return res.status(500).json({
+            message: "Internal Server Error",
+            error: err.message
+        });
+    }
 }
-
 
 module.exports = {
     registerController,loginController,getMeController,logoutUser
