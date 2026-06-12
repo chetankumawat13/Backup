@@ -7,7 +7,7 @@ const AuthLayout = () => {
     <div className="auth-layout">
         
     <div className="left-side">
-      
+       <video muted autoPlay loop src="https://ik.imagekit.io/ad6av31ld/Moodify-video.mp4"></video>
     </div>
 
     <div className="right-side">

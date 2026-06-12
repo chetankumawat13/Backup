@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Moodify-Bold';
+  src: url('/fonts/Chillax-Bold.ttf');
+}
+@font-face {
+  font-family: 'Moodify-Regular';
+  src: url('/fonts/Chillax-Regular.ttf');
+}
+@font-face {
+  font-family: 'Moodify-Light';
+  src: url('/fonts/Chillax-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Moodify-Medium';
+  src: url('/fonts/Chillax-Medium.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,10 +31,20 @@ html, body {
     width: 100%;
     height: 100vh;
     display: flex;
+    overflow: hidden;
   }
   
   .left-side{
     width: 50%;
+    height: 100%;
+
+
+    video{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
   }
   
   .right-side{
@@ -24,7 +52,6 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: pink;
     padding: 2rem 8rem;
   }
   
