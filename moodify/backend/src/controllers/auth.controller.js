@@ -129,17 +129,6 @@ async function logoutUser(req, res) {
             token,
             Date.now().toString()
         );
-
-        const value = await redis.get(token);
-
-        console.log("Value:", value);
-
-        const keys = await redis.keys("*");
-        console.log("Keys:", keys);
-
-        console.log("Ping:", await redis.ping());
-        console.log("DB Size:", await redis.dbsize());
-
         return res.status(200).json({
             message: "logout successfully"
         });
