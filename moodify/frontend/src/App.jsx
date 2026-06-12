@@ -3,10 +3,13 @@ import FaceExpression from './features/Expression/components/FaceExpression'
 import './features/shared/global.css'
 import { RouterProvider } from 'react-router'
 import { Router } from './router/AppRouter'
+import { AuthProvider } from './features/auth/auth.context'
 
 const App = () => {
   return (
-      <RouterProvider router={Router} />
+      <AuthProvider>
+        <RouterProvider router={Router} />
+      </AuthProvider>
   )
 }
 

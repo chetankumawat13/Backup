@@ -13,6 +13,12 @@
         font-family: Moodify-Medium;
     }
 
+    .error{
+        color: red;
+        font-size: 0.9rem;
+        font-family: Moodify-Regular;
+    }
+
     form{
         display: flex;
         flex-direction: column;
