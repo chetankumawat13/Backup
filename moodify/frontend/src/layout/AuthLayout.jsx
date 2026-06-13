@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-
+import '../features/shared/layout.css'
 
 const AuthLayout = () => {
   return (

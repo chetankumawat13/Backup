@@ -3,13 +3,20 @@ import Login from '../features/auth/pages/Login'
 import AuthLayout from '../layout/AuthLayout'
 import Register from '../features/auth/pages/Register'
 import ProtectedRoute from './ProtectedRoute'
+import HomeLayout from '../layout/HomeLayout'
+import Home from '../features/home/pages/Home'
 
 
 export const Router = createBrowserRouter(
     [
         {
-            path:'/',
-            element:<ProtectedRoute>{'home'}</ProtectedRoute>
+            element:<ProtectedRoute><HomeLayout/></ProtectedRoute>,
+            children:[
+                {
+                    path:'/',
+                    element:<Home />
+                }
+            ]
         },
         {
 
