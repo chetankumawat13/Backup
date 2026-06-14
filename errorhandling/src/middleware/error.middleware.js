@@ -10,7 +10,7 @@ function handleError(err,req,res,next,){
         response.stack = err.stack
     }
 
-    res.status(err.status).json(response)
+    res.status(err.statusCode).json(response)
 }
 
 export default handleError
