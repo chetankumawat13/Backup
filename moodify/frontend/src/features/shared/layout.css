@@ -48,5 +48,15 @@
     flex-direction: column;
     overflow: hidden;
 
+    .main-components{
+      display: flex;
+      width: 100%;
+
+      .side-bar{
+        width: 16%;
+        background-color: red;
+      }
+
+    }
     
 }

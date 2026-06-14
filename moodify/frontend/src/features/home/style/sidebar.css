@@ -1,0 +1,59 @@
+.sideBar{
+    width: 100%;
+    background-color: #ccd5ae;
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border-right: 0.2px solid #333333cb;
+    padding-bottom: 2rem;
+
+    .controls{
+        display: flex;
+        flex-direction: column;
+        gap: 1.3rem;
+        padding-top: 3rem;
+
+
+        a{
+            font-size: 1.4rem;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: Moodify-regular;
+            padding: 0.3rem 0.5rem;
+           
+
+            i{
+                font-size: 1.5rem;
+            }
+        }
+        a.active{
+            background-color: #5e548e;
+            color: white;
+            border-radius: 0.3rem;
+        }
+    }
+
+    .logout-btn{
+
+
+        button{
+            padding: 0.5rem 1rem;
+            background-color: #3a5a40;
+            color: white;
+            border: none;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            font-family: Moodify-regular;
+            &:hover{
+                background-color: #2d4030;
+            }
+        }
+    }
+
+}
